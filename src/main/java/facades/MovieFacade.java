@@ -35,8 +35,8 @@ public class MovieFacade {
     }
 
     //CRUD
-    public Movie createMovie(Long id, int year, String name, String[] actors) {
-        Movie movie = new Movie(id, year, name, actors);
+    public Movie createMovie(int year, String name, String[] actors) {
+        Movie movie = new Movie(year, name, actors);
         EntityManager em = emf.createEntityManager();
         try {
             em.getTransaction().begin();
@@ -62,9 +62,9 @@ public class MovieFacade {
         EntityManager em = emf.createEntityManager();
         //Add Movie
         String[] actors = {"Actor 1", "And actor 2"};
-        Movie e1 = createMovie(1L, 2000, "ABC", actors);
-        Movie e2 = createMovie(2L, 2001, "DEF", actors);
-        Movie e3 = createMovie(3L, 2002, "GHI", actors);
+        Movie e1 = createMovie(2000, "ABC", actors);
+        Movie e2 = createMovie(2001, "DEF", actors);
+        Movie e3 = createMovie(2002, "GHI", actors);
     }
 
 }

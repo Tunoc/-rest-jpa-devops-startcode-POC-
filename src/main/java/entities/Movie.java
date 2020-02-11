@@ -26,8 +26,7 @@ public class Movie implements Serializable {
     private String name;
     private String[] actors;
 
-    public Movie(Long id, int year, String name, String[] actors) {
-        this.id = id;
+    public Movie(int year, String name, String[] actors) {
         this.year = year;
         this.name = name;
         this.actors = actors;
