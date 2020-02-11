@@ -1,8 +1,10 @@
 package facades;
 
 import entities.Movie;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -47,7 +49,7 @@ public class MovieFacade {
             em.close();
         }
     }
-    
+
     public Movie getMovie(Long id) {
         EntityManager em = emf.createEntityManager();
         try {
@@ -57,7 +59,33 @@ public class MovieFacade {
             em.close();
         }
     }
-    
+
+    public List<Movie> getAllMovies() {
+        EntityManager em = emf.createEntityManager();
+        return em.createQuery("SELECT m FROM Movie m").getResultList();
+    }
+
+    public long getMovieCount() {
+        EntityManager em = emf.createEntityManager();
+        try {
+            long movieCount = (long) em.createQuery("SELECT COUNT(m) FROM Movie m").getSingleResult();
+            return movieCount;
+        } finally {
+            em.close();
+        }
+    }
+
+    public List<Movie> getMoviesByName(String name) {
+        EntityManager em = emf.createEntityManager();
+        try {
+            TypedQuery<Movie> query = em.createQuery("SELECT m FROM Movie m WHERE m.name = :name", Movie.class);
+            query.setParameter("name", name);
+            return query.getResultList();
+        } finally {
+            em.close();
+        }
+    }
+
     public void populateDB() {
         EntityManager em = emf.createEntityManager();
         //Add Movie

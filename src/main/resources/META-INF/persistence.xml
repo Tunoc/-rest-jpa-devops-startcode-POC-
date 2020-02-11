@@ -8,6 +8,7 @@
       <!-- DO NOT remove the line below. It's not set by the  entityUtils.EMF_Creator -->
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <!-- The missing values are added by entityUtils.EMF_Creator -->
+      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
     </properties>
   </persistence-unit>
 </persistence>

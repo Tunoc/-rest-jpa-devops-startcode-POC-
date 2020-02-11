@@ -5,8 +5,8 @@ import com.google.gson.GsonBuilder;
 import entities.Movie;
 import utils.EMF_Creator;
 import facades.MovieFacade;
+import java.util.List;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -15,12 +15,12 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 
 //Todo Remove or change relevant parts before ACTUAL use
-@Path("xxx")
+@Path("movie")
 public class MovieResource {
 
     private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(
             "pu",
-            "jdbc:mysql://localhost:3307/movieDB",
+            "jdbc:mysql://localhost:3307/startcode",
             "dev",
             "ax2",
             EMF_Creator.Strategy.CREATE);
@@ -42,6 +42,30 @@ public class MovieResource {
     public String getJson1(@PathParam("id") Long id) {
         Movie movie = FACADE.getMovie(id);
         return new Gson().toJson(movie);
+    }
+    
+    @GET
+    @Path("/name/{name}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public String getJson2(@PathParam("name") String name) {
+        List<Movie> movie = FACADE.getMoviesByName(name);
+        return new Gson().toJson(movie);
+    }
+    
+    @GET
+    @Path("all")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getJson3() {
+        List<Movie> movie = FACADE.getAllMovies();
+        return new Gson().toJson(movie);
+    }
+    
+    @GET
+    @Path("count")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getJson4() {
+        long count = FACADE.getMovieCount();
+        return "{\"count\":"+count+"}";
     }
     
     @GET
