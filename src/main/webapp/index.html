@@ -1,12 +1,25 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    </head>
-    <body>
-        <h1>Change or remove this page</h1>
-        <h1>Little change</h1>
-        <h1>Little change</h1>
-    </body>
+
+<head>
+    <title>Start Page</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="cssIndex.css">
+</head>
+
+<body>
+    <h1>Change or remove this page</h1>
+    <h1>Little change</h1>
+
+    <div id="divFrame" class="bodyDiv">
+        Get All Movies: <input type="text" name="input" value="" id="AllMovies" />
+        <button type="button" name="getMovies" id="getAllButton">Get All Movies</button>
+        <div id="divPaste">
+            <!--The rest endpoints result will go here.-->
+        </div>
+    </div>
+
+    <script src="jsRestEndpoints.js"></script>
+</body>
+
 </html>
